@@ -25,7 +25,11 @@ func New(msg string, args ...interface{}) *Error {
 // will be from the moment this function is called rather than when the error was first created, but
 // it allows to a certain level of traceability.
 func Wrap(err error) *Error {
-	return New(err.Error())
+	if err == nil {
+		return nil
+	} else {
+		return New(err.Error())
+	}
 }
 
 // Error represents an error and is consisted of a simple string message and the stack of the goroutine
