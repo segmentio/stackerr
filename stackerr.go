@@ -24,7 +24,7 @@ func New(msg string, args ...interface{}) *Error {
 // Wrap allows you to wrap an existing standard error object. It's important to know that the stack
 // will be from the moment this function is called rather than when the error was first created, but
 // it allows to a certain level of traceability.
-func Wrap(err error) *Error {
+func Wrap(err error) error {
 	if err == nil {
 		return nil
 	} else {
