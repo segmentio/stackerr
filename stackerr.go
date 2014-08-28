@@ -6,16 +6,17 @@ to wrap existing error and implementing the error interface.
 package stackerr
 
 import (
+	"fmt"
 	"runtime"
 )
 
 // New will create a new Error object with the given message and the current goroutine stack.
 // This replaces the standard errors.New function.
-func New(msg string) *Error {
+func New(msg string, args ...interface{}) *Error {
 	var buf [4096]byte
 
 	return &Error{
-		Message: msg,
+		Message: fmt.Sprintf(msg, args...),
 		Stack:   buf[:runtime.Stack(buf[:], false)],
 	}
 }
