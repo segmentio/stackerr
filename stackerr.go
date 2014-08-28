@@ -38,5 +38,5 @@ type Error struct {
 // Error returns the error's message and exists so that this package's errors can be used as regular
 // standard error instances.
 func (e Error) Error() string {
-	return e.Message
+	return e.Message + "\n" + e.Stack
 }
